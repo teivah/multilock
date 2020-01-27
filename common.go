@@ -11,6 +11,6 @@ func addr(i interface{}) string {
 
 func distribution(s string, length int) int {
 	h := fnv.New32()
-	h.Write([]byte(s))
+	_, _ = h.Write([]byte(s))
 	return int(h.Sum32()) % length
 }

@@ -1,8 +1,9 @@
 package multilock
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFixedRW_Get(t *testing.T) {
@@ -10,7 +11,7 @@ func TestFixedRW_Get(t *testing.T) {
 	fixed := NewFixedRW(10)
 	m := fixed.Get(s)
 	m.Lock()
-	m.Unlock()
+	defer m.Unlock()
 	assert.Equal(t, addr(fixed.Get(s)), addr(m))
 }
 
@@ -20,7 +21,7 @@ func TestFixedRW_Get_One(t *testing.T) {
 	fixed := NewFixed(1)
 	m := fixed.Get(s)
 	m.Lock()
-	m.Unlock()
+	defer m.Unlock()
 	assert.Equal(t, addr(fixed.Get(s2)), addr(m))
 }
 
@@ -32,6 +33,6 @@ func TestFixedRW_Get_CustomDistribution(t *testing.T) {
 	}))
 	m := fixed.Get(s)
 	m.Lock()
-	m.Unlock()
+	defer m.Unlock()
 	assert.Equal(t, addr(fixed.Get(s2)), addr(m))
 }

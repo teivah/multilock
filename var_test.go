@@ -1,9 +1,10 @@
 package multilock
 
 import (
-	"github.com/stretchr/testify/assert"
 	"sync"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestVar_Get(t *testing.T) {
@@ -11,7 +12,7 @@ func TestVar_Get(t *testing.T) {
 	v := NewVar(10)
 	m := v.Get(s)
 	m.Lock()
-	m.Unlock()
+	defer m.Unlock()
 	assert.Equal(t, addr(v.Get(s)), addr(m))
 }
 
@@ -21,7 +22,7 @@ func TestVar_Get_One(t *testing.T) {
 	v := NewVar(1)
 	m := v.Get(s)
 	m.Lock()
-	m.Unlock()
+	defer m.Unlock()
 	assert.Equal(t, addr(v.Get(s2)), addr(m))
 }
 
@@ -33,7 +34,7 @@ func TestVar_Get_CustomDistribution(t *testing.T) {
 	}))
 	m := v.Get(s)
 	m.Lock()
-	m.Unlock()
+	defer m.Unlock()
 	assert.Equal(t, addr(v.Get(s2)), addr(m))
 }
 
@@ -45,7 +46,7 @@ func TestVar_Get_Race(t *testing.T) {
 	go func() {
 		m := v.Get("")
 		m.Lock()
-		m.Unlock()
+		defer m.Unlock()
 		wg.Done()
 		v.Resize(20)
 	}()
@@ -53,7 +54,7 @@ func TestVar_Get_Race(t *testing.T) {
 	go func() {
 		m := v.Get("")
 		m.Lock()
-		m.Unlock()
+		defer m.Unlock()
 		wg.Done()
 	}()
 
