@@ -4,12 +4,14 @@ import (
 	"sync"
 )
 
+// Fixed is a fixed length structure of sync.Mutex
 type Fixed struct {
 	length       int
 	mutexes      []sync.Mutex
 	distribution func(s string, length int) int
 }
 
+// NewFixed creates a fixed length structure of sync.Mutex
 func NewFixed(length int, opts ...Option) *Fixed {
 	var options options
 	for _, opt := range opts {
@@ -27,10 +29,12 @@ func NewFixed(length int, opts ...Option) *Fixed {
 	}
 }
 
+// Get retrieves a sync.Mutex from an interface
 func (m *Fixed) Get(i interface{}) *sync.Mutex {
 	return m.GetID(addr(i))
 }
 
+// GetID retrieves a sync.Mutex from an identifier
 func (m *Fixed) GetID(id string) *sync.Mutex {
 	index := m.distribution(id, m.length)
 	return &m.mutexes[index]

@@ -1,5 +1,6 @@
 package multilock
 
+// Option contains the multilock options
 type Option interface {
 	apply(*options)
 }
@@ -22,6 +23,7 @@ func newFuncOption(f func(*options)) *funcOption {
 	}
 }
 
+// WithCustomDistribution allows to specify a custom distribution function
 func WithCustomDistribution(hash func(s string, length int) int) Option {
 	return newFuncOption(func(options *options) {
 		options.distribution = hash
