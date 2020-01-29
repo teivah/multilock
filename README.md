@@ -46,7 +46,7 @@ mlock := multilock.NewFixed(10, multilock.WithCustomDistribution(func(i interfac
 ```
 
 The last point is related to variable length structures.
-In this example, we will create a variable length structure and resize it:
+In this example, we will create one and resize it:
 
 ```
 mlock := multilock.NewVar(10)
