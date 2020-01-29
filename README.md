@@ -1,5 +1,7 @@
 # teivah/multilock
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/teivah/multilock)](https://goreportcard.com/report/github.com/teivah/multilock)
+
 _multilock_ is a Go library allowing to store multiple `sync.Mutex` or `sync.RWMutex`.
 
 The main benefit is to reduce the memory footprint if we need to have a mutex for every single structure of a set (e.g. thousand of maps or slices).
