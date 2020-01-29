@@ -54,4 +54,4 @@ mlock.Resize(15)
 ```
 
 The resize operation is safe. 
-In order to access/resize a variable length structure, it requires to acquire a shared lock first (which does not exist for a fixed structure hence making it faster than a variable one). 
+To access/resize a variable length structure, it requires to acquire a shared lock first (which does not exist for a fixed structure hence making it faster than a variable one). 
