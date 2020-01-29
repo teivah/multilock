@@ -1,9 +1,9 @@
 # teivah/multilock
 
-multilock is a Go library allowing to store multiple `sync.Mutex` or `sync.RWMutex`.
+_multilock_ is a Go library allowing to store multiple `sync.Mutex` or `sync.RWMutex`.
 
-The internal data structure, depending on the use case, has either a fixed or a variable length.
-Accessing a variable structure means acquiring a shared lock first.
+The internal data structure managed by _multilock_, depending on the use case, has either a fixed or a variable length.
+Accessing a variable one means acquiring a shared lock first for every access (which does not exist for a fixed structure).
 
 ## Structures
 
@@ -12,7 +12,7 @@ Accessing a variable structure means acquiring a shared lock first.
 * Variable length structure of Mutex: `multilock.Var`
 * Variable length structure of RWMutex: `multilock.RWVar`
 
-## Examples
+## Examples
 
 ```go
 const multilockLength = 5
