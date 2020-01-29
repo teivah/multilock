@@ -17,7 +17,7 @@ The internal data structure managed by _multilock_, depending on the use case, h
 
 ## Examples
 
-In the following example, we will create a 1/10 ratio multilock (10 mutexes to handle 100 maps):
+In the following example, we will create a 1/10 ratio _multilock_ (10 mutexes to handle 100 maps):
 
 ```go
 const multilockLength = 10
