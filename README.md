@@ -2,7 +2,7 @@
 
 _multilock_ is a Go library allowing to store multiple `sync.Mutex` or `sync.RWMutex`.
 
-The main benefit is to reduce the memory footprint if we need to have a mutex for every single structure of a set (e.g. a set of maps or slices).
+The main benefit is to reduce the memory footprint if we need to have a mutex for every single structure of a set (e.g. thousand of maps or slices).
 
 The internal data structure managed by _multilock_, depending on the use case, has either a fixed or a variable length.
 Accessing a variable one means acquiring a shared lock first for every access (which does not exist for a fixed structure).
