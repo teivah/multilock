@@ -9,8 +9,8 @@ func addr(i interface{}) string {
 	return fmt.Sprintf("%p", i)
 }
 
-func distribution(s string, length int) int {
+func distribution(i interface{}, length int) int {
 	h := fnv.New32()
-	_, _ = h.Write([]byte(s))
+	_, _ = h.Write([]byte(addr(i)))
 	return int(h.Sum32()) % length
 }

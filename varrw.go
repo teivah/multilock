@@ -8,7 +8,7 @@ import (
 type VarRW struct {
 	length       int
 	mutexes      []sync.RWMutex
-	distribution func(s string, length int) int
+	distribution func(i interface{}, length int) int
 	global       sync.Mutex
 }
 

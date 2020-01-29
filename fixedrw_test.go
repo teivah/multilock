@@ -28,7 +28,7 @@ func TestFixedRW_Get_One(t *testing.T) {
 func TestFixedRW_Get_CustomDistribution(t *testing.T) {
 	s := []int{1}
 	s2 := []int{1, 2}
-	fixed := NewFixed(100, WithCustomDistribution(func(_ string, _ int) int {
+	fixed := NewFixed(100, WithCustomDistribution(func(_ interface{}, _ int) int {
 		return 0
 	}))
 	m := fixed.Get(s)

@@ -6,7 +6,7 @@ type Option interface {
 }
 
 type options struct {
-	distribution func(s string, length int) int
+	distribution func(i interface{}, length int) int
 }
 
 type funcOption struct {
@@ -24,8 +24,8 @@ func newFuncOption(f func(*options)) *funcOption {
 }
 
 // WithCustomDistribution allows to specify a custom distribution function
-func WithCustomDistribution(hash func(s string, length int) int) Option {
+func WithCustomDistribution(distribution func(i interface{}, length int) int) Option {
 	return newFuncOption(func(options *options) {
-		options.distribution = hash
+		options.distribution = distribution
 	})
 }

@@ -29,7 +29,7 @@ func TestVarRW_Get_One(t *testing.T) {
 func TestVarRW_Get_CustomDistribution(t *testing.T) {
 	s := []int{1}
 	s2 := []int{1, 2}
-	v := NewVarRW(100, WithCustomDistribution(func(_ string, _ int) int {
+	v := NewVarRW(100, WithCustomDistribution(func(_ interface{}, _ int) int {
 		return 0
 	}))
 	m := v.Get(s)

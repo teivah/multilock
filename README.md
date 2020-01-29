@@ -16,16 +16,18 @@ Accessing a variable one means acquiring a shared lock first for every access (w
 
 ## Examples
 
+In the following example, we will create a 1/10 ratio multilock (10 mutexes to handle 100 maps):
+
 ```go
-const multilockLength = 5
-const customStructLength = 1000
+const multilockLength = 10
+const customStructLength = 100
 
 // Initialize a fixed length multilock structure
 mlock := multilock.NewFixed(multilockLength)
 
 // Create custom structures
 maps := make([]map[string]string, customStructLength)
-for i := 0; i < 1000; i++ {
+for i := 0; i < customStructLength; i++ {
 	maps[i] = make(map[string]string)
 }
 
@@ -34,3 +36,12 @@ mutex := mlock.Get(maps[42])
 mutex.Lock()
 defer mutex.Unlock()
 ``` 
+
+Internally, _multilock_ has a distribution strategy which is basically hashing the key and returning a modulo based on the length provided.
+
+It is also possible to override this distribution strategy this way:
+```go
+multilock.NewFixed(10, multilock.WithCustomDistribution(func(i interface{}, length int) int {
+    // Return an int between 0 and 10 depending on our distribution strategy
+}))
+```

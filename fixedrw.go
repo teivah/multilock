@@ -8,7 +8,7 @@ import (
 type FixedRW struct {
 	length       int
 	mutexes      []sync.RWMutex
-	distribution func(s string, length int) int
+	distribution func(i interface{}, length int) int
 }
 
 // NewFixedRW creates a fixed length structure of sync.RWMutex

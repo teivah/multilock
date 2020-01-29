@@ -8,7 +8,7 @@ import (
 type Fixed struct {
 	length       int
 	mutexes      []sync.Mutex
-	distribution func(s string, length int) int
+	distribution func(i interface{}, length int) int
 }
 
 // NewFixed creates a fixed length structure of sync.Mutex

@@ -8,7 +8,7 @@ import (
 type Var struct {
 	length       int
 	mutexes      []sync.Mutex
-	distribution func(s string, length int) int
+	distribution func(i interface{}, length int) int
 	global       sync.Mutex
 }
 
